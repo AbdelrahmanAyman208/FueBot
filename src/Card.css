@@ -82,6 +82,48 @@
   box-shadow: 0 8px 20px rgba(34, 197, 94, 0.12);
 }
 
+/* Status-driven card skin (matches lane context; survives refactor if parent lane classes change) */
+.Card.Card-grey {
+  background: var(--surface);
+  border-color: var(--backlog-card-border);
+}
+
+.Card.Card-grey::before {
+  background: var(--backlog-dot);
+}
+
+.Card.Card-grey:hover {
+  border-color: var(--backlog-border);
+}
+
+.Card.Card-blue {
+  border-color: var(--prog-card-border);
+  background: var(--prog-card);
+}
+
+.Card.Card-blue::before {
+  background: var(--prog-dot);
+}
+
+.Card.Card-blue:hover {
+  border-color: var(--prog-border);
+  box-shadow: 0 8px 20px rgba(59, 130, 246, 0.12);
+}
+
+.Card.Card-green {
+  border-color: var(--done-card-border);
+  background: var(--done-card);
+}
+
+.Card.Card-green::before {
+  background: var(--done-dot);
+}
+
+.Card.Card-green:hover {
+  border-color: var(--done-border);
+  box-shadow: 0 8px 20px rgba(34, 197, 94, 0.12);
+}
+
 .card-top {
   display: flex;
   align-items: center;
@@ -185,6 +227,24 @@
 }
 
 .complete .tag {
+  background: var(--done-tag-bg);
+  color: var(--done-tag-text);
+  border-color: rgba(21, 128, 61, 0.2);
+}
+
+.Card-grey .tag {
+  background: var(--backlog-tag-bg);
+  color: var(--backlog-tag-text);
+  border-color: rgba(90, 88, 112, 0.2);
+}
+
+.Card-blue .tag {
+  background: var(--prog-tag-bg);
+  color: var(--prog-tag-text);
+  border-color: rgba(29, 78, 216, 0.2);
+}
+
+.Card-green .tag {
   background: var(--done-tag-bg);
   color: var(--done-tag-text);
   border-color: rgba(21, 128, 61, 0.2);

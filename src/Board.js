@@ -1,8 +1,8 @@
 import React from 'react';
 import Dragula from 'dragula';
 import 'dragula/dist/dragula.css';
-import Card from './Card';
 import NewRequestModal from './NewRequestModal';
+import Swimlane from './Swimlane';
 import { loadBoardState, saveBoardState, createDefaultBoardState } from './boardStorage';
 import './Board.css';
 import './Board-modern.css';
@@ -302,53 +302,27 @@ export default class Board extends React.Component {
         </div>
 
         <div className="board">
-          <div className="Swimlane-column backlog">
-            <div className="col-header">
-              <span className="col-dot"></span>
-              <span className="col-title">Backlog</span>
-              <span className="col-badge">{backlogFiltered.length}</span>
-              <button type="button" className="col-add" title="Add to backlog" onClick={this.openNew}>
-                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round">
-                  <path d="M6 2v8M2 6h8" />
-                </svg>
-              </button>
-            </div>
-            <div className="swimlane-cards" ref={this.swimlanes.backlog}>
-              {backlogFiltered.map(client => <Card key={client.id} client={client} />)}
-            </div>
-          </div>
-
-          <div className="Swimlane-column in-progress">
-            <div className="col-header">
-              <span className="col-dot"></span>
-              <span className="col-title">In Progress</span>
-              <span className="col-badge">{inProgressFiltered.length}</span>
-              <button type="button" className="col-add" title="Add to in progress" onClick={this.openNew}>
-                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round">
-                  <path d="M6 2v8M2 6h8" />
-                </svg>
-              </button>
-            </div>
-            <div className="swimlane-cards" ref={this.swimlanes.inProgress}>
-              {inProgressFiltered.map(client => <Card key={client.id} client={client} />)}
-            </div>
-          </div>
-
-          <div className="Swimlane-column complete">
-            <div className="col-header">
-              <span className="col-dot"></span>
-              <span className="col-title">Complete</span>
-              <span className="col-badge">{completeFiltered.length}</span>
-              <button type="button" className="col-add" title="Add to complete" onClick={this.openNew}>
-                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round">
-                  <path d="M6 2v8M2 6h8" />
-                </svg>
-              </button>
-            </div>
-            <div className="swimlane-cards" ref={this.swimlanes.complete}>
-              {completeFiltered.map(client => <Card key={client.id} client={client} />)}
-            </div>
-          </div>
+          <Swimlane
+            className="backlog"
+            name="Backlog"
+            clients={backlogFiltered}
+            dragulaRef={this.swimlanes.backlog}
+            onAddClick={this.openNew}
+          />
+          <Swimlane
+            className="in-progress"
+            name="In Progress"
+            clients={inProgressFiltered}
+            dragulaRef={this.swimlanes.inProgress}
+            onAddClick={this.openNew}
+          />
+          <Swimlane
+            className="complete"
+            name="Complete"
+            clients={completeFiltered}
+            dragulaRef={this.swimlanes.complete}
+            onAddClick={this.openNew}
+          />
         </div>
 
         <div id="toast-container">
